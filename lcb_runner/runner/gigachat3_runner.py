@@ -1,4 +1,3 @@
-import os
 from time import sleep
 
 try:
@@ -11,14 +10,14 @@ from lcb_runner.runner.base_runner import BaseRunner
 
 
 class GigaChat3Runner(BaseRunner):
+    # Class-level client to avoid pickling issues with multiprocessing
+    client = OpenAI(
+        api_key="pass",  # No API key required
+        base_url="https://grigoriyklopov50--example-vllm-inference-serve-dev.modal.run/v1",
+    )
+
     def __init__(self, args, model):
         super().__init__(args, model)
-        
-        # Initialize OpenAI client with custom base URL
-        self.client = OpenAI(
-            api_key="pass",  # No API key required
-            base_url="https://grigoriyklopov50--example-vllm-inference-serve-dev.modal.run/v1",
-        )
         
         self.client_kwargs: dict[str | str] = {
             "model": "ai-sage/GigaChat3-10B-A1.8B",  # Actual model name for the API
@@ -39,7 +38,7 @@ class GigaChat3Runner(BaseRunner):
             return [""] * self.args.n
 
         try:
-            response = self.client.chat.completions.create(
+            response = GigaChat3Runner.client.chat.completions.create(
                 messages=prompt,
                 **self.client_kwargs,
             )
