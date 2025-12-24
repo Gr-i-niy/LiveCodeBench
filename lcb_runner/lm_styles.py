@@ -861,6 +861,14 @@ LanguageModelList: list[LanguageModel] = [
         datetime(2024, 4, 1),
         "https://huggingface.co/agentica-org/DeepCoder-14B-Preview",
     ),
+    ## Custom GigaChat Model
+    LanguageModel(
+        "gigachat-pruned",
+        "GigaChat-Pruned",
+        LMStyle.OpenAIChat,
+        datetime(2024, 1, 1),
+        link="http://37.194.195.213:11434",
+    ),
 ]
 
 LanguageModelStore: dict[str, LanguageModel] = {

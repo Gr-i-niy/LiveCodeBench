@@ -2,6 +2,11 @@ from lcb_runner.lm_styles import LMStyle, LanguageModel
 
 
 def build_runner(args, model: LanguageModel):
+    # Custom GigaChat model
+    if model.model_name == "gigachat-pruned":
+        from lcb_runner.runner.gigachat_runner import GigaChatRunner
+
+        return GigaChatRunner(args, model)
     if model.model_style == LMStyle.OpenAIChat:
         from lcb_runner.runner.oai_runner import OpenAIRunner
 
