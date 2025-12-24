@@ -861,13 +861,20 @@ LanguageModelList: list[LanguageModel] = [
         datetime(2024, 4, 1),
         "https://huggingface.co/agentica-org/DeepCoder-14B-Preview",
     ),
-    ## Custom GigaChat Model
+    ## Custom GigaChat Models
     LanguageModel(
         "gigachat-pruned",
         "GigaChat-Pruned",
         LMStyle.OpenAIChat,
         datetime(2024, 1, 1),
         link="http://37.194.195.213:11434",
+    ),
+    LanguageModel(
+        "gigachat3-10b",
+        "GigaChat3-10B-A1.8B",
+        LMStyle.OpenAIChat,
+        datetime(2024, 1, 1),
+        link="https://grigoriyklopov50--example-vllm-inference-serve-dev.modal.run",
     ),
 ]
 
